@@ -1,0 +1,125 @@
+/* File animations.css: Toan bo keyframe chuyen dong (canh hoa, trai tim dap, go chu, fly-up) */
+
+/* Nhip dap trai tim (Heartbeat) */
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.15);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.15);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+.pulse-heart {
+  display: inline-block;
+  animation: heartbeat 2s infinite ease-in-out;
+  transform-origin: center;
+}
+
+/* Nup nhap nhay con tro typewriter */
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Hop qua nhun nhay moi goi click */
+@keyframes giftBounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.02);
+  }
+}
+
+/* Trai tim bay len roi bien mat khi bam nut */
+@keyframes flyUpAndFade {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.6) rotate(0deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(var(--tx, -20px), -120px) scale(1.2) rotate(var(--rot, 15deg));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx-end, 40px), -260px) scale(1.5) rotate(var(--rot-end, -25deg));
+  }
+}
+
+/* Dia nhac quay tron */
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Song am nhac nhap nho */
+@keyframes waveBar {
+  0%, 100% {
+    height: 4px;
+  }
+  50% {
+    height: 16px;
+  }
+}
+
+/* Dao dong bay bong nhe nhang */
+@keyframes floatSoft {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(2deg);
+  }
+}
+
+.float-item {
+  animation: floatSoft 4s infinite ease-in-out;
+}
+
+/* Scroll reveal class (hien noi dung khi cuon toi) */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0, 0, 1), transform 0.8s cubic-bezier(0.2, 0, 0, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Quy tac tiet che hoat hoa neu thiet bi bat prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .pulse-heart,
+  .float-item,
+  .music-btn.is-playing .music-icon-disc,
+  .music-btn.is-playing .music-wave-bar {
+    animation: none !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
